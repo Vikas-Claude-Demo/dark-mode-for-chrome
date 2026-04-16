@@ -55,6 +55,7 @@
         linear-gradient(180deg, #07101e 0%, #0a1323 46%, #09111f 100%);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -108,6 +109,11 @@
 
     .nav-links a:hover { color: var(--accent-2); }
 
+    .nav-links a,
+    .footer-links a {
+      transition: color 160ms ease, opacity 160ms ease;
+    }
+
     .hero {
       padding: 52px 0 28px;
     }
@@ -133,6 +139,18 @@
     .hero-copy {
       padding: 34px;
     }
+
+    .hero-copy > * {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: rise-in 780ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .hero-copy .eyebrow { animation-delay: 100ms; }
+    .hero-copy h1 { animation-delay: 180ms; }
+    .hero-copy .lead { animation-delay: 280ms; }
+    .hero-copy .cta-row { animation-delay: 380ms; }
+    .hero-copy .mini-grid { animation-delay: 500ms; }
 
     .eyebrow {
       display: inline-flex;
@@ -219,6 +237,13 @@
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .mini-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(139, 200, 255, 0.18);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .mini-title {
@@ -239,6 +264,20 @@
         var(--surface-2);
       display: grid;
       gap: 18px;
+      position: relative;
+      isolation: isolate;
+      animation: drift 8s ease-in-out infinite;
+    }
+
+    .hero-demo::after {
+      content: "";
+      position: absolute;
+      inset: auto 14% -18% 14%;
+      height: 32%;
+      background: radial-gradient(circle, rgba(139, 200, 255, 0.18), transparent 68%);
+      filter: blur(30px);
+      z-index: -1;
+      animation: pulse-glow 6s ease-in-out infinite;
     }
 
     .demo-window {
@@ -326,6 +365,12 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
       background: rgba(255, 255, 255, 0.03);
       min-height: 132px;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .mode-preview:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139, 200, 255, 0.2);
     }
 
     .mode-preview h3 {
@@ -358,6 +403,13 @@
       border-radius: 22px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.03);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .stat:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139, 200, 255, 0.22);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .stat strong {
@@ -399,6 +451,14 @@
 
     .panel {
       padding: 22px;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+      transform-style: preserve-3d;
+    }
+
+    .panel:hover {
+      transform: translateY(-5px);
+      border-color: rgba(139, 200, 255, 0.22);
+      background: rgba(16, 28, 49, 0.92);
     }
 
     .panel-icon {
@@ -440,6 +500,12 @@
       border-radius: 22px;
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.03);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139, 200, 255, 0.2);
     }
 
     .step-number {
@@ -463,6 +529,12 @@
 
     .faq-item {
       padding: 22px;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139, 200, 255, 0.18);
     }
 
     .faq-item p {
@@ -482,6 +554,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
+      transition: transform 220ms ease, border-color 220ms ease;
+    }
+
+    .cta-band:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139, 200, 255, 0.22);
     }
 
     .cta-band p {
@@ -509,6 +587,64 @@
     }
 
     .footer-links a:hover { color: var(--accent-2); }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(30px) scale(0.985);
+      transition:
+        opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes drift {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        opacity: 0.55;
+        transform: scale(0.96);
+      }
+      50% {
+        opacity: 0.9;
+        transform: scale(1.04);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-copy > *,
+      .hero-demo,
+      .hero-demo::after,
+      [data-reveal] {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
 
     @media (max-width: 980px) {
       .hero-grid,
@@ -659,7 +795,7 @@
         </div>
       </div>
 
-      <div class="stats">
+      <div class="stats" data-reveal>
         <div class="stat">
           <strong>3</strong>
           <span>reading modes designed for different light conditions</span>
@@ -680,7 +816,7 @@
     </section>
 
     <section class="section" id="features">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <div>
           <h2>What the extension actually does</h2>
           <p>
@@ -690,21 +826,21 @@
         </div>
       </div>
       <div class="grid-3">
-        <article class="panel">
+        <article class="panel" data-reveal style="--reveal-delay: 40ms;">
           <div class="panel-icon">A</div>
           <h3>Readable dark browsing</h3>
           <p>
             Apply dark styling to most websites in Chrome to reduce glare and make long reading sessions easier.
           </p>
         </article>
-        <article class="panel">
+        <article class="panel" data-reveal style="--reveal-delay: 120ms;">
           <div class="panel-icon">B</div>
           <h3>Black and white mode</h3>
           <p>
             Remove color noise when you want a calmer, newspaper-like reading experience on text-heavy pages.
           </p>
         </article>
-        <article class="panel">
+        <article class="panel" data-reveal style="--reveal-delay: 200ms;">
           <div class="panel-icon">C</div>
           <h3>Practical controls</h3>
           <p>
@@ -715,7 +851,7 @@
     </section>
 
     <section class="section" id="modes">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <div>
           <h2>Choose the mode that fits your eyes</h2>
           <p>
@@ -725,21 +861,21 @@
       </div>
       <div class="two-up">
         <div class="steps">
-          <article class="step">
+          <article class="step" data-reveal style="--reveal-delay: 40ms;">
             <div class="step-number">01</div>
             <div>
               <h3>Classic Dark</h3>
               <p>Use this for general browsing when you want a balanced dark mode across articles, documentation, and standard websites.</p>
             </div>
           </article>
-          <article class="step">
+          <article class="step" data-reveal style="--reveal-delay: 120ms;">
             <div class="step-number">02</div>
             <div>
               <h3>Midnight Black</h3>
               <p>Use this in low-light environments or on OLED displays when deeper blacks and stronger contrast feel more comfortable.</p>
             </div>
           </article>
-          <article class="step">
+          <article class="step" data-reveal style="--reveal-delay: 200ms;">
             <div class="step-number">03</div>
             <div>
               <h3>Black &amp; White</h3>
@@ -747,7 +883,7 @@
             </div>
           </article>
         </div>
-        <article class="panel">
+        <article class="panel" data-reveal style="--reveal-delay: 120ms;">
           <h3>Built for long reading sessions</h3>
           <p>
             Dark Mode for Chrome is positioned for users who read a lot in-browser: docs, blog posts,
@@ -769,7 +905,7 @@
     </section>
 
     <section class="section" id="faq">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <div>
           <h2>Frequently asked questions</h2>
           <p>
@@ -778,20 +914,20 @@
         </div>
       </div>
       <div class="faq">
-        <article class="faq-item">
+        <article class="faq-item" data-reveal style="--reveal-delay: 40ms;">
           <h3>Does it work on every page?</h3>
           <p>
             It works on most standard websites, but Chrome blocks extensions from styling some protected surfaces such as
             the Chrome Web Store and internal <code>chrome://</code> pages.
           </p>
         </article>
-        <article class="faq-item">
+        <article class="faq-item" data-reveal style="--reveal-delay: 120ms;">
           <h3>Can I disable it on specific websites?</h3>
           <p>
             Yes. You can pause the extension on the current site from the popup and manage the paused list directly inside the extension.
           </p>
         </article>
-        <article class="faq-item">
+        <article class="faq-item" data-reveal style="--reveal-delay: 200ms;">
           <h3>What makes this different from a generic dark mode extension?</h3>
           <p>
             It includes three distinct reading modes, a cleaner popup workflow, schedule controls, and an explicit black-and-white option for focused reading.
@@ -799,7 +935,7 @@
         </article>
       </div>
 
-      <div class="cta-band">
+      <div class="cta-band" data-reveal>
         <div>
           <h3>Ready to publish and share it</h3>
           <p>
@@ -814,7 +950,7 @@
     </section>
 
     <footer>
-      <div class="footer-card">
+      <div class="footer-card" data-reveal>
         <div>
           <h3>Dark Mode for Chrome</h3>
           <p style="margin:8px 0 0; color: var(--muted);">
@@ -829,5 +965,41 @@
       </div>
     </footer>
   </main>
+  <script>
+    (() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const revealItems = document.querySelectorAll('[data-reveal]');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.18,
+        rootMargin: '0px 0px -8% 0px'
+      });
+
+      revealItems.forEach((item) => observer.observe(item));
+
+      const tiltItems = document.querySelectorAll('.panel, .faq-item, .footer-card');
+      tiltItems.forEach((item) => {
+        item.addEventListener('pointermove', (event) => {
+          const rect = item.getBoundingClientRect();
+          const px = (event.clientX - rect.left) / rect.width;
+          const py = (event.clientY - rect.top) / rect.height;
+          const rotateY = (px - 0.5) * 5;
+          const rotateX = (0.5 - py) * 4;
+          item.style.transform = `translateY(-5px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        item.addEventListener('pointerleave', () => {
+          item.style.transform = '';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

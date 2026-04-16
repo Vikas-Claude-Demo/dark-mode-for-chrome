@@ -1,0 +1,17 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="18" y1="10" x2="108" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#16315D"/>
+      <stop offset="1" stop-color="#0A1222"/>
+    </linearGradient>
+    <linearGradient id="moon" x1="39" y1="31" x2="84" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A5DEFF"/>
+      <stop offset="1" stop-color="#6EB9FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg)"/>
+  <path d="M76.9872 29.6045C59.3964 31.2689 45.6295 46.0569 45.6295 64.0918C45.6295 83.2414 61.1539 98.7659 80.3036 98.7659C83.8498 98.7659 87.2716 98.2329 90.4934 97.2426C83.5841 102.836 74.7918 106.188 65.2166 106.188C42.9645 106.188 24.9248 88.148 24.9248 65.8959C24.9248 45.1172 40.6654 28.0156 60.8783 25.8605C66.7035 25.2393 72.3196 26.0384 76.9872 29.6045Z" fill="url(#moon)"/>
+  <path d="M81.4883 34.5537L84.0368 40.5046L89.9877 43.0532L84.0368 45.6018L81.4883 51.5527L78.9397 45.6018L72.9888 43.0532L78.9397 40.5046L81.4883 34.5537Z" fill="#F3FAFF"/>
+  <rect x="69" y="72" width="26" height="6" rx="3" fill="#E8F7FF" fill-opacity="0.92"/>
+  <rect x="69" y="84" width="20" height="6" rx="3" fill="#D1EFFF" fill-opacity="0.84"/>
+</svg>

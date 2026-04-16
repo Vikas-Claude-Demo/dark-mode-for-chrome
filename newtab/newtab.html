@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Tab — Dark Mode for Chrome</title>
+  <link rel="stylesheet" href="newtab.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Clock -->
+    <div class="clock-block">
+      <div class="time" id="clock">00:00</div>
+      <div class="date" id="dateLabel">Monday, January 1</div>
+    </div>
+
+    <!-- Search Bar -->
+    <form class="search-form" id="searchForm" autocomplete="off">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none">
+          <circle cx="8.5" cy="8.5" r="5.5" stroke="#666" stroke-width="1.5"/>
+          <path d="M13 13l3.5 3.5" stroke="#666" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+        <input
+          type="text"
+          class="search-input"
+          id="searchInput"
+          placeholder="Search or type a URL"
+          autofocus
+          spellcheck="false"
+        />
+      </div>
+    </form>
+
+    <!-- Quick Links -->
+    <div class="quick-links" id="quickLinks">
+      <a class="quick-link" href="https://google.com" target="_self">
+        <span class="quick-link-icon">G</span>
+        <span class="quick-link-label">Google</span>
+      </a>
+      <a class="quick-link" href="https://github.com" target="_self">
+        <span class="quick-link-icon">GH</span>
+        <span class="quick-link-label">GitHub</span>
+      </a>
+      <a class="quick-link" href="https://youtube.com" target="_self">
+        <span class="quick-link-icon">YT</span>
+        <span class="quick-link-label">YouTube</span>
+      </a>
+      <a class="quick-link" href="https://reddit.com" target="_self">
+        <span class="quick-link-icon">R</span>
+        <span class="quick-link-label">Reddit</span>
+      </a>
+      <a class="quick-link" href="https://twitter.com" target="_self">
+        <span class="quick-link-icon">X</span>
+        <span class="quick-link-label">X / Twitter</span>
+      </a>
+      <a class="quick-link" href="https://mail.google.com" target="_self">
+        <span class="quick-link-icon">M</span>
+        <span class="quick-link-label">Gmail</span>
+      </a>
+    </div>
+
+    <!-- Dark mode toggle shortcut -->
+    <div class="dm-status" id="dmStatus">
+      <span class="dm-dot" id="dmDot"></span>
+      <span class="dm-label" id="dmLabel">Dark Mode On</span>
+      <button class="dm-toggle-btn" id="dmToggleBtn">Toggle</button>
+    </div>
+
+  </div>
+
+  <script src="newtab.js"></script>
+</body>
+</html>

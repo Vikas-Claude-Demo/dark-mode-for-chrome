@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Mode for Chrome</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <svg class="header-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14V4a6 6 0 010 12z" fill="#88c8ff"/>
+      </svg>
+      <span class="header-title">Dark Mode</span>
+    </div>
+    <span class="header-version">v1.0.0</span>
+  </header>
+
+  <section class="section master-section">
+    <div class="row master-row">
+      <div class="row-left">
+        <span class="status-dot" id="masterDot"></span>
+        <div class="row-text">
+          <span class="row-label">Reading Protection</span>
+          <span class="row-sublabel" id="masterSubLabel">Loading…</span>
+        </div>
+      </div>
+      <label class="toggle" aria-label="Toggle dark mode">
+        <input type="checkbox" id="masterToggle" />
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+      </label>
+    </div>
+    <div class="status-banner" id="statusBanner" hidden></div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">View Mode</div>
+    <div class="mode-grid" id="modeGrid">
+      <button class="mode-card" type="button" data-mode="classic">
+        <span class="mode-card-title">Classic Dark</span>
+        <span class="mode-card-copy">Balanced dark theme for daily browsing.</span>
+      </button>
+      <button class="mode-card" type="button" data-mode="midnight">
+        <span class="mode-card-title">Midnight Black</span>
+        <span class="mode-card-copy">Deeper blacks with stronger night contrast.</span>
+      </button>
+      <button class="mode-card" type="button" data-mode="mono">
+        <span class="mode-card-title">Black &amp; White</span>
+        <span class="mode-card-copy">Monochrome reading mode with less visual noise.</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">This Site</div>
+    <div class="row" id="pauseRow">
+      <div class="row-left">
+        <svg class="row-icon" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="#94a1c3" stroke-width="1.5"/>
+          <path d="M6 5.5v5M10 5.5v5" stroke="#94a1c3" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+        <div class="row-text">
+          <span class="row-label">Pause on this site</span>
+          <span class="row-sublabel" id="pauseSubLabel">Dark mode active</span>
+        </div>
+      </div>
+      <button class="action-btn" id="pauseBtn">Pause</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">Schedule</div>
+    <div class="row">
+      <div class="row-left">
+        <svg class="row-icon" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="#94a1c3" stroke-width="1.5"/>
+          <path d="M8 5v3l2 2" stroke="#94a1c3" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+        <div class="row-text">
+          <span class="row-label">Auto dark mode</span>
+          <span class="row-sublabel" id="scheduleSubLabel">8 PM – 7 AM daily</span>
+        </div>
+      </div>
+      <label class="toggle" aria-label="Toggle schedule">
+        <input type="checkbox" id="scheduleToggle" />
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+      </label>
+    </div>
+
+    <div class="schedule-time-row" id="scheduleTimeRow">
+      <div class="time-field">
+        <label class="time-label" for="onHourInput">On</label>
+        <input type="number" class="time-input" id="onHourInput" min="0" max="23" value="20" />
+        <span class="time-unit">h</span>
+      </div>
+      <span class="time-sep">—</span>
+      <div class="time-field">
+        <label class="time-label" for="offHourInput">Off</label>
+        <input type="number" class="time-input" id="offHourInput" min="0" max="23" value="7" />
+        <span class="time-unit">h</span>
+      </div>
+      <button class="save-btn" id="saveScheduleBtn">Save</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <button class="footer-btn" id="whitelistBtn">Whitelist</button>
+    <button class="footer-btn" id="settingsBtn">New Tab</button>
+    <button class="footer-btn accent" id="rateBtn">★ Rate</button>
+  </footer>
+
+  <div class="panel" id="whitelistPanel">
+    <div class="panel-header">
+      <span class="panel-title">Whitelisted Sites</span>
+      <button class="panel-close" id="closeWhitelistBtn">&times;</button>
+    </div>
+    <div class="panel-body" id="whitelistBody">
+      <p class="empty-msg">No sites paused.</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

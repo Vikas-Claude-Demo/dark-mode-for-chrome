@@ -1,0 +1,34 @@
+{
+  "extensionName": {
+    "message": "Dark Mode for Chrome — Night & Eye Care",
+    "description": "Extension name shown in Chrome toolbar and Web Store"
+  },
+  "extensionDescription": {
+    "message": "Dark mode, midnight black, and black & white reading modes for websites in Chrome. Improve readability, reduce eye strain, and schedule a more comfortable browsing experience.",
+    "description": "Extension description shown in Chrome Web Store"
+  },
+  "toggleDarkMode": {
+    "message": "Toggle Dark Mode",
+    "description": "Accessible label for the master dark mode toggle"
+  },
+  "pauseOnSite": {
+    "message": "Pause dark mode on this site",
+    "description": "Button to whitelist the current site"
+  },
+  "enhancedMode": {
+    "message": "Enhanced Mode",
+    "description": "Label for the invert-based fallback dark mode"
+  },
+  "schedule": {
+    "message": "Auto Schedule",
+    "description": "Label for the sunset/sunrise scheduling feature"
+  },
+  "whitelist": {
+    "message": "Whitelist",
+    "description": "Footer button to open the whitelist panel"
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Footer button to open settings"
+  }
+}

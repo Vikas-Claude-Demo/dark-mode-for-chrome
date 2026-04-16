@@ -3,7 +3,7 @@
   "name": "Dark Mode for Chrome — Night & Eye Care",
   "short_name": "Dark Mode",
   "version": "1.0.0",
-  "description": "Dark mode, midnight black, and black & white reading modes for websites in Chrome. Improve readability, reduce eye strain, and schedule a more comfortable browsing experience.",
+  "description": "Dark mode for Chrome with midnight black and black-and-white reading modes. Reduce glare and improve readability.",
   "default_locale": "en_US",
 
   "permissions": [

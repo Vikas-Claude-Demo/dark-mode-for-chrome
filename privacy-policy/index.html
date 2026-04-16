@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Dark Mode for Chrome</title>
+  <meta name="description" content="Privacy Policy for the Dark Mode for Chrome extension." />
+  <style>
+    :root {
+      --bg: #08101d;
+      --surface: #101b2e;
+      --border: #29415f;
+      --text: #eef4ff;
+      --muted: #a5b3cb;
+      --accent: #88c8ff;
+      --accent-2: #dff4ff;
+      --success: #7ce0a7;
+      --shadow: rgba(0, 0, 0, 0.28);
+      --font: "Inter", "Segoe UI", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { color-scheme: dark; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background:
+        radial-gradient(circle at top, rgba(136, 200, 255, 0.14), transparent 30%),
+        linear-gradient(180deg, #08101d 0%, #0b1220 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(18, 31, 53, 0.92), rgba(11, 18, 32, 0.94));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 24px 60px var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 6px rgba(124, 224, 167, 0.12);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -0.04em;
+    }
+
+    .lede {
+      margin: 0;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .meta-pill {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .card {
+      background: rgba(13, 21, 36, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 1rem;
+      color: var(--accent-2);
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 0 0 16px 20px;
+      color: var(--muted);
+    }
+
+    li + li { margin-top: 8px; }
+    strong { color: var(--text); }
+    code {
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .section + .section {
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: #8d9ab2;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 28px 14px 48px; }
+      .hero, .card {
+        padding: 22px 18px;
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow"><span class="dot"></span> Dark Mode for Chrome</div>
+      <h1>Privacy Policy</h1>
+      <p class="lede">
+        This Privacy Policy explains what data the Dark Mode for Chrome extension uses,
+        what it does not collect, and how extension settings are stored.
+      </p>
+      <div class="meta">
+        <span class="meta-pill">Effective date: April 16, 2026</span>
+        <span class="meta-pill">Product: Dark Mode for Chrome</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section">
+        <h2>1. Summary</h2>
+        <p>
+          Dark Mode for Chrome is designed to improve readability on websites by applying
+          visual display modes such as Classic Dark, Midnight Black, and Black &amp; White.
+        </p>
+        <p>
+          <strong>The extension does not collect, sell, or share personal data with the developer.</strong>
+          It works locally in the browser and stores only the settings needed for the extension to function.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>2. Information We Store</h2>
+        <p>
+          The extension stores user preference data in Chrome extension storage so settings can
+          persist between browsing sessions and, if the user has Chrome Sync enabled, across
+          signed-in Chrome instances.
+        </p>
+        <h3>Stored settings may include:</h3>
+        <ul>
+          <li>whether dark mode is enabled or disabled</li>
+          <li>the selected reading mode, such as Classic Dark, Midnight Black, or Black &amp; White</li>
+          <li>schedule settings such as on and off hours</li>
+          <li>the list of sites where the user has paused the extension</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>3. Information We Do Not Collect</h2>
+        <p>Dark Mode for Chrome does not collect or transmit the following to the developer:</p>
+        <ul>
+          <li>browsing history</li>
+          <li>page content, article text, passwords, or form entries</li>
+          <li>personally identifiable information</li>
+          <li>financial or payment information</li>
+          <li>health information</li>
+          <li>authentication credentials</li>
+          <li>precise location data</li>
+          <li>web analytics or tracking identifiers for advertising</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>4. Why Permissions Are Needed</h2>
+        <h3><code>&lt;all_urls&gt;</code> host access</h3>
+        <p>This is required so the extension can apply reading styles to websites the user opens in Chrome.</p>
+
+        <h3><code>storage</code></h3>
+        <p>Used to save extension settings such as enabled state, theme mode, schedule, and paused sites.</p>
+
+        <h3><code>tabs</code> and <code>activeTab</code></h3>
+        <p>Used to identify the current tab so the user can pause or resume the extension on the current site and so updates can be applied correctly.</p>
+
+        <h3><code>scripting</code></h3>
+        <p>Used to inject the extension’s content script into web pages so display adjustments can be applied.</p>
+
+        <h3><code>alarms</code></h3>
+        <p>Used to support automatic schedule features for enabling or disabling the extension at selected times.</p>
+      </div>
+
+      <div class="section">
+        <h2>5. Data Processing and Sharing</h2>
+        <p>
+          Dark Mode for Chrome does not send stored settings or browsing data to the developer’s servers
+          because the extension does not operate a backend service for user data collection.
+        </p>
+        <p>
+          The extension does not sell user data and does not share user data with third parties for
+          advertising, profiling, or marketing purposes.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>6. Third-Party Services</h2>
+        <p>
+          The extension may open third-party websites directly in the browser when a user chooses to visit them,
+          such as search pages from the custom new tab page or the Chrome Web Store listing page.
+          Those websites are governed by their own privacy policies.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>7. Data Retention and Control</h2>
+        <p>
+          Stored settings remain in Chrome extension storage until the user changes them or removes the extension.
+          Users can stop all extension data processing by disabling or uninstalling the extension.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>8. Children’s Privacy</h2>
+        <p>
+          Dark Mode for Chrome is not directed to children and does not knowingly collect personal information from children.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>9. Changes to This Policy</h2>
+        <p>
+          This Privacy Policy may be updated from time to time to reflect product changes, legal requirements,
+          or store policy requirements. The updated version will be posted at this page with a revised effective date.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>10. Contact</h2>
+        <p>
+          For support or privacy questions, please use the developer contact information provided in the
+          Chrome Web Store listing for Dark Mode for Chrome.
+        </p>
+      </div>
+
+      <p class="footer">
+        Hosted privacy policy URL for Chrome Web Store submission: <strong>/privacy-policy/</strong>
+      </p>
+    </section>
+  </main>
+</body>
+</html>

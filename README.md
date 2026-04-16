@@ -3,7 +3,7 @@
   <h1>Dark Mode for Chrome — Night & Eye Care</h1>
   <p><em>Dark mode, midnight black, and black & white reading modes for websites in Chrome.</em></p>
   
-  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+  [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
   [![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Available-green.svg)](#)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#)
 </div>
@@ -79,6 +79,20 @@ It works on most standard websites! However, Chrome blocks extensions from actin
 <summary><b>Can I disable it on specific sites?</b></summary>
 Yes! You can pause the extension on any active website directly from the popup.
 </details>
+
+## Privacy Policy
+
+For Chrome Web Store submission and public hosting, this repository includes a static privacy policy page:
+
+- Source file: [privacy-policy/index.html](/home/brilworks/Downloads/dark/privacy-policy/index.html:1)
+- Vercel config: [vercel.json](/home/brilworks/Downloads/dark/vercel.json:1)
+- Hosted route after deploy: `/privacy-policy/`
+
+This page states the extension’s current data behavior accurately: settings are stored in Chrome extension storage, and no personal data is collected or transmitted to the developer.
+
+## License
+
+This project is open source under the GNU General Public License v3.0. See [LICENSE](/home/brilworks/Downloads/dark/LICENSE:1).
 
 ## 👨‍💻 Developer
 Developed with ❤️ by [Dr. Dhaval Trivedi](https://drdhaval.in)

@@ -4,7 +4,7 @@
     "description": "Extension name shown in Chrome toolbar and Web Store"
   },
   "extensionDescription": {
-    "message": "Dark mode, midnight black, and black & white reading modes for websites in Chrome. Improve readability, reduce eye strain, and schedule a more comfortable browsing experience.",
+    "message": "Dark mode for Chrome with midnight black and black-and-white reading modes. Reduce glare and improve readability.",
     "description": "Extension description shown in Chrome Web Store"
   },
   "toggleDarkMode": {

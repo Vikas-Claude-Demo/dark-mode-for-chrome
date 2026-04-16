@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Mode for Chrome | Midnight Black and Black & White Reading Modes</title>
+  <meta
+    name="description"
+    content="Dark Mode for Chrome adds Classic Dark, Midnight Black, and Black & White reading modes to websites for better readability and lower eye strain."
+  />
+  <meta
+    name="robots"
+    content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+  />
+  <meta property="og:title" content="Dark Mode for Chrome" />
+  <meta
+    property="og:description"
+    content="A reading-focused Chrome extension with dark mode, midnight black, black-and-white mode, per-site pause, and schedule controls."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/icons/icon128.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dark Mode for Chrome" />
+  <meta
+    name="twitter:description"
+    content="Dark mode for Chrome with Classic Dark, Midnight Black, and Black & White reading modes."
+  />
+  <meta name="twitter:image" content="/icons/icon128.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon32.png" />
+  <style>
+    :root {
+      --bg: #07101e;
+      --surface: rgba(13, 22, 39, 0.88);
+      --surface-2: rgba(16, 28, 49, 0.92);
+      --surface-3: #13233e;
+      --border: rgba(137, 196, 255, 0.16);
+      --text: #eef5ff;
+      --muted: #a6b5cf;
+      --accent: #8bc8ff;
+      --accent-2: #dff2ff;
+      --success: #84e1af;
+      --shadow: rgba(0, 0, 0, 0.28);
+      --font: "Sora", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { color-scheme: dark; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at top, rgba(139, 200, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(73, 104, 192, 0.22), transparent 24%),
+        linear-gradient(180deg, #07101e 0%, #0a1323 46%, #09111f 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .shell {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(7, 16, 30, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--accent-2); }
+
+    .hero {
+      padding: 52px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-demo,
+    .panel,
+    .faq-item,
+    .footer-card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 28px;
+      box-shadow: 0 26px 60px var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 0 8px rgba(132, 225, 175, 0.12);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: var(--font);
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 0.98;
+      max-width: 10ch;
+      margin-bottom: 18px;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 60ch;
+      margin: 0 0 26px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .button:hover { transform: translateY(-1px); }
+
+    .button-primary {
+      background: linear-gradient(180deg, #a4dcff 0%, #7cbfff 100%);
+      color: #06111d;
+      box-shadow: 0 16px 34px rgba(124, 191, 255, 0.22);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .mini-title {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .mini-copy {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .hero-demo {
+      padding: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(139, 200, 255, 0.12), transparent 34%),
+        var(--surface-2);
+      display: grid;
+      gap: 18px;
+    }
+
+    .demo-window {
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: #0a1220;
+      overflow: hidden;
+    }
+
+    .demo-topbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .demo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .demo-url {
+      margin-left: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .demo-body {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(139, 200, 255, 0.1);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .demo-headline {
+      font-size: 1.3rem;
+      font-family: var(--font);
+      letter-spacing: -0.04em;
+    }
+
+    .demo-paragraph {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .demo-lines {
+      display: grid;
+      gap: 8px;
+    }
+
+    .line {
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    }
+
+    .line.short { width: 58%; }
+    .line.mid { width: 72%; }
+
+    .mode-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mode-preview {
+      padding: 14px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.03);
+      min-height: 132px;
+    }
+
+    .mode-preview h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .mode-preview p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .mode-preview.classic { background: linear-gradient(180deg, rgba(31, 47, 77, 0.8), rgba(10, 18, 32, 0.92)); }
+    .mode-preview.midnight { background: linear-gradient(180deg, rgba(18, 18, 22, 0.96), rgba(4, 5, 8, 1)); }
+    .mode-preview.mono {
+      background: linear-gradient(180deg, rgba(240, 240, 240, 0.16), rgba(25, 25, 25, 0.92));
+      color: #f2f4f7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 26px 0 38px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: var(--font);
+      font-size: 1.7rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .section {
+      padding: 16px 0 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-header p {
+      max-width: 62ch;
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .panel-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, rgba(139, 200, 255, 0.18), rgba(139, 200, 255, 0.08));
+      color: var(--accent-2);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .panel p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font);
+      font-weight: 700;
+      background: rgba(139, 200, 255, 0.14);
+      color: var(--accent-2);
+    }
+
+    .step p { margin: 6px 0 0; color: var(--muted); }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 22px;
+    }
+
+    .faq-item p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .cta-band {
+      margin-top: 20px;
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at right top, rgba(139, 200, 255, 0.12), transparent 26%),
+        var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .cta-band p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 18px 0 64px;
+    }
+
+    .footer-card {
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover { color: var(--accent-2); }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .two-up,
+      .grid-3,
+      .stats,
+      .mode-preview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-grid { grid-template-columns: 1fr; }
+      .cta-band,
+      .footer-card,
+      .section-header,
+      .nav-inner {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 20px, 1160px); }
+      .hero { padding-top: 26px; }
+      .hero-copy,
+      .hero-demo,
+      .panel,
+      .faq-item,
+      .footer-card,
+      .cta-band {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      h1 { max-width: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Dark Mode for Chrome",
+      "applicationCategory": "BrowserApplication",
+      "operatingSystem": "Chrome",
+      "description": "Dark Mode for Chrome adds Classic Dark, Midnight Black, and Black & White reading modes to websites for better readability and lower eye strain.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Classic Dark mode",
+        "Midnight Black mode",
+        "Black & White reading mode",
+        "Per-site pause",
+        "Daily schedule controls",
+        "Custom new tab experience"
+      ]
+    }
+  </script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top">
+        <img src="/icons/icon128.png" alt="Dark Mode for Chrome icon" />
+        <span>Dark Mode for Chrome</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#modes">Modes</a>
+        <a href="#faq">FAQ</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="https://github.com/drdhavaltrivedi/dark-mode-for-chrome">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="shell" id="top">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Chrome extension for readability</div>
+          <h1>Dark mode that feels built for reading.</h1>
+          <p class="lead">
+            Dark Mode for Chrome brings Classic Dark, Midnight Black, and Black &amp; White reading modes
+            to websites so bright pages are easier on the eyes without turning your browser into a settings maze.
+          </p>
+          <div class="cta-row">
+            <a class="button button-primary" href="https://chromewebstore.google.com/">View Chrome Web Store</a>
+            <a class="button button-secondary" href="https://github.com/drdhavaltrivedi/dark-mode-for-chrome">Explore Source Code</a>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-card">
+              <span class="mini-title">Three display modes</span>
+              <span class="mini-copy">Switch between balanced dark, deep black, and monochrome reading.</span>
+            </div>
+            <div class="mini-card">
+              <span class="mini-title">Per-site control</span>
+              <span class="mini-copy">Pause the extension on sites that already have the right native theme.</span>
+            </div>
+            <div class="mini-card">
+              <span class="mini-title">Automatic schedule</span>
+              <span class="mini-copy">Run dark mode when you need it, not all day by accident.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-demo">
+          <div class="demo-window">
+            <div class="demo-topbar">
+              <span class="demo-dot"></span>
+              <span class="demo-dot"></span>
+              <span class="demo-dot"></span>
+              <span class="demo-url">https://example.com/article</span>
+            </div>
+            <div class="demo-body">
+              <span class="demo-badge">Classic Dark</span>
+              <div class="demo-headline">Long-form reading without the glare.</div>
+              <div class="demo-paragraph">
+                Turn bright websites into something calmer, more focused, and easier to read at night.
+              </div>
+              <div class="demo-lines">
+                <div class="line"></div>
+                <div class="line mid"></div>
+                <div class="line short"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mode-preview-grid">
+            <article class="mode-preview classic">
+              <h3>Classic Dark</h3>
+              <p>Balanced inversion for everyday browsing and general web use.</p>
+            </article>
+            <article class="mode-preview midnight">
+              <h3>Midnight Black</h3>
+              <p>Deeper blacks and stronger contrast for low-light environments.</p>
+            </article>
+            <article class="mode-preview mono">
+              <h3>Black &amp; White</h3>
+              <p>Monochrome reading mode for focus-heavy pages and reduced visual noise.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>3</strong>
+          <span>reading modes designed for different light conditions</span>
+        </div>
+        <div class="stat">
+          <strong>1-click</strong>
+          <span>pause or resume on the current website</span>
+        </div>
+        <div class="stat">
+          <strong>Daily</strong>
+          <span>automatic schedule support for night browsing</span>
+        </div>
+        <div class="stat">
+          <strong>Local</strong>
+          <span>settings stored in Chrome extension storage</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-header">
+        <div>
+          <h2>What the extension actually does</h2>
+          <p>
+            This isn’t just a generic invert toggle. The extension is built around reading comfort,
+            site-level control, and fast access from the popup.
+          </p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="panel">
+          <div class="panel-icon">A</div>
+          <h3>Readable dark browsing</h3>
+          <p>
+            Apply dark styling to most websites in Chrome to reduce glare and make long reading sessions easier.
+          </p>
+        </article>
+        <article class="panel">
+          <div class="panel-icon">B</div>
+          <h3>Black and white mode</h3>
+          <p>
+            Remove color noise when you want a calmer, newspaper-like reading experience on text-heavy pages.
+          </p>
+        </article>
+        <article class="panel">
+          <div class="panel-icon">C</div>
+          <h3>Practical controls</h3>
+          <p>
+            Pause the extension per site, switch modes from the popup, and set a schedule without digging through menus.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="modes">
+      <div class="section-header">
+        <div>
+          <h2>Choose the mode that fits your eyes</h2>
+          <p>
+            Different pages and environments need different contrast. The three modes are tuned for distinct browsing situations.
+          </p>
+        </div>
+      </div>
+      <div class="two-up">
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">01</div>
+            <div>
+              <h3>Classic Dark</h3>
+              <p>Use this for general browsing when you want a balanced dark mode across articles, documentation, and standard websites.</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">02</div>
+            <div>
+              <h3>Midnight Black</h3>
+              <p>Use this in low-light environments or on OLED displays when deeper blacks and stronger contrast feel more comfortable.</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">03</div>
+            <div>
+              <h3>Black &amp; White</h3>
+              <p>Use this when color distractions get in the way and you want a cleaner, monochrome reading mode for focus.</p>
+            </div>
+          </article>
+        </div>
+        <article class="panel">
+          <h3>Built for long reading sessions</h3>
+          <p>
+            Dark Mode for Chrome is positioned for users who read a lot in-browser: docs, blog posts,
+            long articles, research material, dashboards, and other bright web content that can become tiring over time.
+          </p>
+          <p>
+            It also includes daily scheduling and per-site pause controls so you can keep the extension useful
+            instead of fighting it on sites that already handle dark mode well.
+          </p>
+          <div class="cta-band" style="margin-top:20px;">
+            <div>
+              <h3>Privacy-first behavior</h3>
+              <p>Settings stay in Chrome extension storage. The extension does not collect or transmit personal data to the developer.</p>
+            </div>
+            <a class="button button-secondary" href="/privacy-policy/">Read policy</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-header">
+        <div>
+          <h2>Frequently asked questions</h2>
+          <p>
+            These answers match the current behavior of the extension and the limits imposed by Chrome itself.
+          </p>
+        </div>
+      </div>
+      <div class="faq">
+        <article class="faq-item">
+          <h3>Does it work on every page?</h3>
+          <p>
+            It works on most standard websites, but Chrome blocks extensions from styling some protected surfaces such as
+            the Chrome Web Store and internal <code>chrome://</code> pages.
+          </p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I disable it on specific websites?</h3>
+          <p>
+            Yes. You can pause the extension on the current site from the popup and manage the paused list directly inside the extension.
+          </p>
+        </article>
+        <article class="faq-item">
+          <h3>What makes this different from a generic dark mode extension?</h3>
+          <p>
+            It includes three distinct reading modes, a cleaner popup workflow, schedule controls, and an explicit black-and-white option for focused reading.
+          </p>
+        </article>
+      </div>
+
+      <div class="cta-band">
+        <div>
+          <h3>Ready to publish and share it</h3>
+          <p>
+            Use this landing page, the hosted privacy policy, and the Chrome Web Store listing copy together for a cleaner launch setup.
+          </p>
+        </div>
+        <div class="cta-row" style="margin:0;">
+          <a class="button button-primary" href="/privacy-policy/">Privacy Policy</a>
+          <a class="button button-secondary" href="https://github.com/drdhavaltrivedi/dark-mode-for-chrome">Source Code</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-card">
+        <div>
+          <h3>Dark Mode for Chrome</h3>
+          <p style="margin:8px 0 0; color: var(--muted);">
+            Dark mode, midnight black, and black &amp; white reading modes for websites in Chrome.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="https://github.com/drdhavaltrivedi/dark-mode-for-chrome">GitHub</a>
+          <a href="/README.md">README</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

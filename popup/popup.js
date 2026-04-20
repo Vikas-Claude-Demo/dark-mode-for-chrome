@@ -20,7 +20,6 @@ const onHourInput = document.getElementById('onHourInput');
 const offHourInput = document.getElementById('offHourInput');
 const saveScheduleBtn = document.getElementById('saveScheduleBtn');
 const whitelistBtn = document.getElementById('whitelistBtn');
-const settingsBtn = document.getElementById('settingsBtn');
 const rateBtn = document.getElementById('rateBtn');
 const whitelistPanel = document.getElementById('whitelistPanel');
 const closeWhitelistBtn = document.getElementById('closeWhitelistBtn');
@@ -208,10 +207,6 @@ function renderWhitelistPanel() {
     });
   });
 }
-
-settingsBtn.addEventListener('click', () => {
-  chrome.tabs.create({ url: chrome.runtime.getURL('newtab/newtab.html') });
-});
 
 rateBtn.addEventListener('click', () => {
   chrome.tabs.create({ url: 'https://chromewebstore.google.com/detail/dark-mode-for-chrome' });

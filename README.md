@@ -30,7 +30,7 @@ Pause and resume the extension on specific websites. Perfect for sites that alre
 Set it and forget it! You can turn dark mode on and off automatically based on your customized schedule.
 
 ### ⚡ Lightweight & Fast
-A custom popup built for fast access to main controls—no deeply buried settings. Plus, enjoy a clean, customized new tab experience.
+A custom popup built for fast access to main controls—no deeply buried settings.
 
 ## 🎯 Who It Is For
 
@@ -61,7 +61,7 @@ Our extension will soon be available on the Chrome Web Store. Check back here fo
 Chrome restricts extensions from styling some protected pages for security reasons. The extension will not work on:
 - Chrome Web Store pages
 - Internal browser pages (like `chrome://settings` or `chrome://extensions`)
-- New Tab Page (unless overridden, which we optionally support)
+- New Tab Page
 
 ## 💬 FAQ
 
@@ -84,15 +84,15 @@ Yes! You can pause the extension on any active website directly from the popup.
 
 For Chrome Web Store submission and public hosting, this repository includes a static privacy policy page:
 
-- Source file: [privacy-policy/index.html](/home/brilworks/Downloads/dark/privacy-policy/index.html:1)
-- Vercel config: [vercel.json](/home/brilworks/Downloads/dark/vercel.json:1)
+- Source file: [privacy-policy/index.html](privacy-policy/index.html)
+- Vercel config: [vercel.json](vercel.json)
 - Hosted route after deploy: `/privacy-policy/`
 
 This page states the extension’s current data behavior accurately: settings are stored in Chrome extension storage, and no personal data is collected or transmitted to the developer.
 
 ## License
 
-This project is open source under the GNU General Public License v3.0. See [LICENSE](/home/brilworks/Downloads/dark/LICENSE:1).
+This project is open source under the GNU General Public License v3.0. See [LICENSE](LICENSE).
 
 ## 👨‍💻 Developer
 Developed with ❤️ by [Dr. Dhaval Trivedi](https://drdhaval.in)

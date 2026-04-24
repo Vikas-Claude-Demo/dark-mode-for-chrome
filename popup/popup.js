@@ -24,6 +24,7 @@ const rateBtn = document.getElementById('rateBtn');
 const whitelistPanel = document.getElementById('whitelistPanel');
 const closeWhitelistBtn = document.getElementById('closeWhitelistBtn');
 const whitelistBody = document.getElementById('whitelistBody');
+const headerVersion = document.getElementById('headerVersion');
 
 const STORAGE_KEYS = ['darkEnabled', 'whitelist', 'scheduleEnabled', 'onHour', 'offHour', 'themeMode'];
 const RESTRICTED_URL_PATTERNS = [
@@ -59,6 +60,11 @@ function isRestrictedUrl(url) {
 }
 
 async function init() {
+  // Keep popup version in sync with the packaged extension version.
+  if (headerVersion && chrome.runtime?.getManifest) {
+    headerVersion.textContent = `v${chrome.runtime.getManifest().version}`;
+  }
+
   try {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (tab?.url) {

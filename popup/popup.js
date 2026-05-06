@@ -215,7 +215,7 @@ function renderWhitelistPanel() {
 }
 
 rateBtn.addEventListener('click', () => {
-  chrome.tabs.create({ url: 'https://chromewebstore.google.com/detail/dark-mode-for-chrome' });
+  chrome.tabs.create({ url: 'https://chromewebstore.google.com/detail/dark-mode-for-chrome-%E2%80%94-ni/hnjcjcghfnjfonceacdfpfhcjadffdhe?authuser=0&hl=en-GB&utm_source=weblanding&utm_medium=referral&utm_campaign=chrome_extension_promo' });
 });
 
 init();

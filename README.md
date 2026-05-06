@@ -4,7 +4,7 @@
   <p><em>Dark mode, midnight black, and black & white reading modes for websites in Chrome.</em></p>
   
   [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-  [![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Available-green.svg)](#)
+  [![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Available-green.svg)](https://chromewebstore.google.com/detail/dark-mode-for-chrome-%E2%80%94-ni/hnjcjcghfnjfonceacdfpfhcjadffdhe?authuser=0&hl=en-GB&utm_source=weblanding&utm_medium=referral&utm_campaign=chrome_extension_promo)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#)
 </div>
 
@@ -43,7 +43,7 @@ This extension is built specifically for people who spend long hours reading in 
 ## 🛠️ Installation
 
 ### Option 1: Chrome Web Store (Recommended)
-Our extension will soon be available on the Chrome Web Store. Check back here for the official link!
+You can install the official version directly from the [Chrome Web Store](https://chromewebstore.google.com/detail/dark-mode-for-chrome-%E2%80%94-ni/hnjcjcghfnjfonceacdfpfhcjadffdhe?authuser=0&hl=en-GB&utm_source=weblanding&utm_medium=referral&utm_campaign=chrome_extension_promo).
 
 ### Option 2: Install from Source (Developer Mode)
 1. Download or clone this repository:

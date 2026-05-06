@@ -4,6 +4,7 @@
   "short_name": "Dark Mode",
   "version": "1.0.1",
   "description": "Dark mode for Chrome with midnight black and black-and-white reading modes. Reduce glare and improve readability.",
+  "homepage_url": "https://chromewebstore.google.com/detail/dark-mode-for-chrome-%E2%80%94-ni/hnjcjcghfnjfonceacdfpfhcjadffdhe?authuser=0&hl=en-GB&utm_source=weblanding&utm_medium=referral&utm_campaign=chrome_extension_promo",
   "default_locale": "en_US",
 
   "permissions": [

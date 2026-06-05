@@ -83,7 +83,7 @@ function renderState(state) {
   const whitelist = state.whitelist || [];
   const scheduleEnabled = !!state.scheduleEnabled;
   const onHour = state.onHour ?? 20;
-  const offHour = state.offHour ?? 7;
+  const offHour = 24 - onHour;
   const themeMode = normalizeMode(state.themeMode);
   const restrictedPage = isRestrictedUrl(currentTabUrl);
   const isWhitelisted = whitelist.includes(currentHostname);
@@ -169,9 +169,14 @@ scheduleToggle.addEventListener('change', () => {
   chrome.storage.sync.set({ scheduleEnabled: scheduleToggle.checked }, reload);
 });
 
+onHourInput.addEventListener('input', () => {
+  const onHour = Math.min(23, Math.max(0, parseInt(onHourInput.value, 10) || 0));
+  offHourInput.value = 24 - onHour;
+});
+
 saveScheduleBtn.addEventListener('click', () => {
   const onHour = Math.min(23, Math.max(0, parseInt(onHourInput.value, 10) || 20));
-  const offHour = Math.min(23, Math.max(0, parseInt(offHourInput.value, 10) || 7));
+  const offHour = 24 - onHour;
   chrome.storage.sync.set({ onHour, offHour }, reload);
 });
 

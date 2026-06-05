@@ -49,7 +49,8 @@ async function getEffectiveDarkEnabled() {
     return data.darkEnabled !== false;
   }
 
-  return isWithinScheduledWindow(data.onHour ?? 20, data.offHour ?? 7);
+  const onHour = data.onHour ?? 20;
+  return isWithinScheduledWindow(onHour, data.offHour ?? (24 - onHour));
 }
 
 function isWithinScheduledWindow(onHour, offHour, now = new Date()) {
@@ -128,7 +129,7 @@ async function scheduleAlarms() {
   await chrome.alarms.clearAll();
   if (!data.scheduleEnabled) return;
   const onHour  = data.onHour  ?? 20;
-  const offHour = data.offHour ?? 7;
+  const offHour = data.offHour ?? (24 - onHour);
   chrome.alarms.create('dmfc-auto-on',  { when: nextAlarmTime(onHour),  periodInMinutes: 1440 });
   chrome.alarms.create('dmfc-auto-off', { when: nextAlarmTime(offHour), periodInMinutes: 1440 });
 }

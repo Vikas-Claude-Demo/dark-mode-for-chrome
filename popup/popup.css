@@ -352,6 +352,11 @@ html, body {
   border-color: var(--accent);
 }
 
+.time-input[readonly] {
+  opacity: 0.65;
+  cursor: default;
+}
+
 .time-sep,
 .time-unit {
   font-size: 11px;

@@ -1,11 +1,11 @@
 {
   "extensionName": {
-    "message": "Dark Mode for Chrome — Night & Eye Care",
-    "description": "Extension name shown in Chrome toolbar and Web Store"
+    "message": "Dark Mode — Night & Eye Care",
+    "description": "Extension name shown in browser toolbar"
   },
   "extensionDescription": {
-    "message": "Dark mode for Chrome with midnight black and black-and-white reading modes. Reduce glare and improve readability.",
-    "description": "Extension description shown in Chrome Web Store"
+    "message": "Dark mode with midnight black and black-and-white reading modes. Reduce glare and improve readability.",
+    "description": "Extension description"
   },
   "toggleDarkMode": {
     "message": "Toggle Dark Mode",

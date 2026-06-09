@@ -103,7 +103,7 @@ function renderState(state) {
 
   statusBanner.hidden = !restrictedPage;
   statusBanner.textContent = restrictedPage
-    ? 'Chrome internal pages and the Chrome Web Store do not allow extension styling.'
+    ? 'Browser internal pages do not allow extension styling.'
     : '';
 
   if (!currentHostname || !darkEnabled || restrictedPage) {

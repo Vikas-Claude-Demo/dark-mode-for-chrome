@@ -1,10 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Dark Mode for Chrome — Night & Eye Care",
+  "name": "Dark Mode — Night & Eye Care",
   "short_name": "Dark Mode",
   "version": "1.0.1",
-  "description": "Dark mode for Chrome with midnight black and black-and-white modes. Reduce glare and improve readability.",
-  "homepage_url": "https://chromewebstore.google.com/detail/dark-mode-for-chrome-%E2%80%94-ni/hnjcjcghfnjfonceacdfpfhcjadffdhe?authuser=0&hl=en-GB&utm_source=weblanding&utm_medium=referral&utm_campaign=chrome_extension_promo",
+  "description": "Dark mode with midnight black and black-and-white modes. Reduce glare and improve readability.",
   "default_locale": "en_US",
 
   "permissions": [
@@ -27,7 +26,7 @@
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
-    "default_title": "Dark Mode for Chrome"
+    "default_title": "Dark Mode"
   },
 
   "background": {
